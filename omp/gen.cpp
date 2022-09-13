@@ -1,4 +1,5 @@
-namespace opm {
+#include "heads.h"
+namespace omp {
   class Gen{
     public:
     Gen(){}
@@ -7,5 +8,5 @@ namespace opm {
     void printMe(){
       std::cout<< "I am OMP" << '\n';
     }
-  }
+  };
 }

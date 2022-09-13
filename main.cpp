@@ -1,14 +1,21 @@
 //~~~START:Tue, 13-Sep-2022, 17:15:38 IST
 //~~~Author:Rajesh Pandian M | mrprajesh.co.in
-#include <bits/stdc++.h>
+#include <iostream>
 #include <stdio.h> 
 #include <unistd.h> 
+#include <string.h> 
+
 using namespace std;
 
-#include "cuda/gen.cpp"
-#include "omp/gen.cpp"
+#include "cuda/gen.cpp"           // we can change it .h of backend later
+#include "omp/gen.cpp"            // we can change it .h of backend later
+
 
 int main(int argc, char* argv[]) {
+  if(argc<4){
+    std::cout<< "Usage: " << argv[0] << " -f <dsl.sp>  -b [cuda|omp|mpi|acc]" << '\n';
+    exit(-1);
+  }
 
   int opt;
   char* fileName = NULL;
@@ -21,11 +28,11 @@ int main(int argc, char* argv[]) {
     switch (opt) {
       case 'f':
         fileName = optarg;
-        printf("option:%c val:%s\n", opt, optarg); 
+        printf("option:%c value:%s\n", opt, optarg); 
         break;
       case 'b':
         backendTarget = optarg;
-        printf("option:%c val:%s\n", opt, optarg); 
+        printf("option:%c value:%s\n", opt, optarg); 
         break;
       case 's':
         staticGen = true;
@@ -50,6 +57,20 @@ int main(int argc, char* argv[]) {
     }
   }
      
-    
+  if(strcmp(backendTarget,"cuda")==0){
+    std::cout<< "in cuda:" << fileName << '\n';
+    cuda::Gen cppGen;
+    cppGen.printMe();
+  }
+  else if(strcmp(backendTarget,"omp")==0) {
+    std::cout<< "in omp:" << fileName << '\n';
+    omp::Gen cppGen;
+    cppGen.printMe();
+  }
+  else
+    std::cout<< "invalid backend" << '\n';
+  
+  //printMe(); // should print AST
+  
   return 0;
 }

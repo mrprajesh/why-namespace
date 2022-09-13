@@ -1,4 +1,7 @@
+#include "heads.h"
+
 namespace cuda {
+
   class Gen{
     public:
     Gen(){}
@@ -7,5 +10,6 @@ namespace cuda {
     void printMe(){
       std::cout<< "I am CUDA" << '\n';
     }
-  }
+  };
+
 }
