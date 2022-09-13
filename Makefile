@@ -4,7 +4,7 @@ CXX = g++ $(CXXFLAGS) -Wall -Wreturn-type #-fsanitize=address
 all: starplat
 
 starplat: bin main.o cuda.o omp.o ast.o
-	$(CXX) bin/cgen.o bin/ogen.o bin/ast.o bin/main.o -o StarPlat
+	$(CXX) bin/cgen.o bin/ogen.o bin/main.o -o StarPlat
 	
 main.o: main.cpp
 	$(CXX) -c main.cpp -o bin/main.o  -I.

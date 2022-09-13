@@ -7,8 +7,10 @@
 
 using namespace std;
 
+//~ #include "heads.h"
 #include "cuda/gen.cpp"           // we can change it .h of backend later
 #include "omp/gen.cpp"            // we can change it .h of backend later
+#include "AST.cpp"                // we can change it .h of backend later
 
 
 int main(int argc, char* argv[]) {
@@ -70,7 +72,7 @@ int main(int argc, char* argv[]) {
   else
     std::cout<< "invalid backend" << '\n';
   
-  //printMe(); // should print AST
+  printAST(); // should print AST
   
   return 0;
 }
